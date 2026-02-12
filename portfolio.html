@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Muhammad Ismail Khan – AI Engineer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-alt: #020617;
+      --card: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56,189,248,0.12);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: rgba(148,163,184,0.3);
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 24px 60px rgba(15,23,42,0.7);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 52%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 32px 16px 64px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(15,23,42,0.96), rgba(15,23,42,0.9));
+      border-radius: 28px;
+      border: 1px solid rgba(148,163,184,0.4);
+      box-shadow: var(--shadow-soft);
+      padding: 32px;
+      backdrop-filter: blur(28px);
+    }
+
+    @media (min-width: 768px) {
+      body { padding: 48px 24px 80px; }
+      .container { padding: 40px; }
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Header */
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .title-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .name {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .role {
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(56,189,248,0.4);
+      background: radial-gradient(circle at top left, var(--accent-soft), transparent);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(30,64,175,0.5);
+    }
+
+    .pill span.label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .pill span.value {
+      font-size: 0.9rem;
+    }
+
+    /* Layout */
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    @media (min-width: 880px) {
+      .layout {
+        grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+        gap: 28px;
+      }
+    }
+
+    .section {
+      margin-bottom: 22px;
+      padding: 18px 18px 16px;
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, rgba(15,23,42,1), rgba(15,23,42,0.94));
+      border: 1px solid rgba(51,65,85,0.9);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.8);
+    }
+
+    .section-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      margin-left: 12px;
+      background: linear-gradient(90deg, rgba(148,163,184,0.5), transparent);
+    }
+
+    .about-text { font-size: 0.98rem; color: #d1d5db; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .chip {
+      font-size: 0.83rem;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(30,64,175,0.8);
+      color: #e5e7eb;
+    }
+
+    .subsection {
+      margin-top: 10px;
+    }
+
+    .subsection-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .item {
+      padding: 10px 0;
+      border-top: 1px solid rgba(30,64,175,0.35);
+    }
+
+    .item:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .item-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 4px 10px;
+      margin-bottom: 4px;
+    }
+
+    .item-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .item-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .item-meta span + span::before {
+      content: " · ";
+    }
+
+    .item-desc {
+      font-size: 0.9rem;
+      color: #cbd5f5;
+      margin-bottom: 4px;
+    }
+
+    .item-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(56,189,248,0.5);
+      color: var(--accent);
+    }
+
+    ul { padding-left: 18px; margin-top: 4px; }
+    li { font-size: 0.9rem; margin-bottom: 3px; color: #cbd5f5; }
+
+    .footer {
+      margin-top: 12px;
+      text-align: right;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <div class="title-row">
+        <div class="name">Muhammad Ismail Khan</div>
+        <div class="role">AI Engineer</div>
+      </div>
+
+      <div class="contact">
+        <div class="pill">
+          <span class="label">Phone</span>
+          <span class="value">+92-335-5082725</span>
+        </div>
+        <div class="pill">
+          <span class="label">Email</span>
+          <span class="value"><a href="mailto:mik1123khan@gmail.com">mik1123khan@gmail.com</a></span>
+        </div>
+        <div class="pill">
+          <span class="label">Location</span>
+          <span class="value">Mardan, Pakistan</span>
+        </div>
+        <div class="pill">
+          <span class="label">GitHub</span>
+          <span class="value"><a href="https://github.com/MuhammadIsmailKhanMIK" target="_blank">github.com/MuhammadIsmailKhanMIK</a></span>
+        </div>
+        <div class="pill">
+          <span class="label">LinkedIn</span>
+          <span class="value"><a href="https://www.linkedin.com/in/muhammad-ismail-khan-273a592b5/" target="_blank">LinkedIn profile</a></span>
+        </div>
+      </div>
+    </header>
+
+    <section class="layout">
+      <!-- Left column -->
+      <div>
+        <section class="section">
+          <h2 class="section-title">Profile</h2>
+          <p class="about-text">
+            I am Muhammad Ismail Khan, a Computer Science student specializing in Artificial Intelligence
+            at the University of Engineering and Technology, Mardan. I have strong expertise in Machine Learning,
+            Deep Learning, Natural Language Processing (NLP), Computer Vision (CV), Data Analysis, and Python
+            programming, along with skills in problem-solving, creative thinking, and research. My AI journey includes
+            developing diverse projects such as Diabetes Prediction System, Movie Recommendation System, Traffic Signal
+            Recognition System, Depression Detection System, Mental Disorder Prediction System, and Audio Detection
+            System. Currently, I am working on a smart dental assistant, integrating AI in dental healthcare. My goal is
+            to apply artificial intelligence across multiple domains including healthcare, automation, and intelligent
+            systems to drive global innovation, technological advancement, and sustainable progress.
+          </p>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Experience</h2>
+
+          <div class="item">
+            <div class="item-header">
+              <div class="item-title">Artificial Intelligence Intern (On Site)</div>
+              <div class="item-meta">
+                <span>Career Launchpad of UET Mardan, KPK</span>
+                <span>September 2024 – Present</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item-header">
+              <div class="item-title">Machine Learning Intern (Remote)</div>
+              <div class="item-meta">
+                <span>Artificial Intelligence (AI) Community of Pakistan (AICP), Lahore, Punjab</span>
+                <span>June 2024 – September 2024</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item-header">
+              <div class="item-title">Web Development Intern (Remote)</div>
+              <div class="item-meta">
+                <span>Artificial Intelligence (AI) Community of Pakistan (AICP), Lahore, Punjab</span>
+                <span>October 2023 – November 2023</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Projects</h2>
+
+          <div class="item">
+            <div class="item-header">
+              <div class="item-title">Diabetes Prediction System</div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item-header">
+              <div class="item-title">Movie Recommendation System</div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item-header">
+              <div class="item-title">Traffic Signal Recognition System</div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item-header">
+              <div class="item-title">Depression Detection System</div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item-header">
+              <div class="item-title">Mental Disorder Prediction System</div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item-header">
+              <div class="item-title">Audio Detection System</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Awards &amp; Achievements</h2>
+
+          <div class="item">
+            <div class="item-header">
+              <div class="item-title">1st Position – Speed Programming Competition</div>
+            </div>
+            <p class="item-desc">
+              Tech Competition 2025, University of Engineering and Technology, Mardan.
+            </p>
+          </div>
+
+          <div class="item">
+            <div class="item-header">
+              <div class="item-title">Best Project Presenter Award for AI-Driven Mental Disorder Prediction System</div>
+            </div>
+            <p class="item-desc">
+              Presented at the International Conference hosted by Mohi-ud-Din Islamic University, Nerian Sharif (AJ&amp;K), Pakistan.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right column -->
+      <aside>
+        <section class="section">
+          <h2 class="section-title">Education</h2>
+
+          <div class="item">
+            <div class="item-header">
+              <div class="item-title">BS Computer Science (AI)</div>
+              <div class="item-meta">
+                <span>UET Mardan, KPK</span>
+                <span>October 2022 – Present</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Skills</h2>
+
+          <div class="subsection">
+            <div class="subsection-title">Core AI</div>
+            <div class="chips">
+              <span class="chip">Machine Learning</span>
+              <span class="chip">Deep Learning</span>
+              <span class="chip">Natural Language Processing (NLP)</span>
+              <span class="chip">Computer Vision</span>
+            </div>
+          </div>
+
+          <div class="subsection">
+            <div class="subsection-title">Programming</div>
+            <div class="chips">
+              <span class="chip">Python Programming</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Languages</h2>
+          <div class="chips">
+            <span class="chip">English</span>
+            <span class="chip">Urdu</span>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Contact</h2>
+          <p class="about-text">
+            Open to opportunities in AI, machine learning, and related fields, including internships,
+            research collaborations, and full-time roles.
+          </p>
+        </section>
+      </aside>
+    </section>
+
+    <div class="footer">
+      Last updated: Feb 2026
+    </div>
+  </main>
+</body>
+</html>
+
